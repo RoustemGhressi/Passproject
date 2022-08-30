@@ -1,0 +1,106 @@
+<div class="bg-light">
+ 
+    <section class="vh-100">
+      <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-5 col-lg-4 col-xl-4 col-sm-6 fade-in-up">
+            <img
+              id="wiou"
+              @fadeIn
+              @fadeOut
+              src="https://www.pngall.com/wp-content/uploads/4/Cyber-Security-Logo-Transparent.png"
+              class="img-fluid"
+              alt="Sample image"
+            />
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <!--Email -->
+              <div @fadeIn class="form-outline mb-4 form-group">
+                <label class="form-label" for="emaila">Adresse Email :</label>
+                <input
+                  #emailInput
+                  formControlName="email"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && registerForm.controls['email'].errors
+                  }"
+                  type="email"
+                  id="emaila"
+                  class="form-control form-control-lg"
+                  placeholder="Entrez votre adresse email"
+                  required
+                  [pattern]="emailRegex"
+                />
+                <div
+                  *ngIf="submitted && registerForm.controls['email'].errors"
+                  class="text-danger"
+                >
+                  Veuillez saisir votre Email
+                </div>
+              </div>
+  
+              <!--Password -->
+              <div @fadeIn class="form-outline mb-3">
+                <label class="form-label" for="idpass">Mot de passe :</label>
+                <input
+                  #passwordInput
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && registerForm.controls['password'].errors
+                  }"
+                  type="password"
+                  id="idpass"
+                  class="form-control form-control-lg"
+                  placeholder="Entrez votre mot de passe"
+                  required
+                  minlength="8"
+                />
+                <div
+                  *ngIf="submitted && registerForm.controls['password'].errors"
+                  class="text-danger"
+                >
+                  Veuillez saisir votre mot de passe
+                </div>
+              </div>
+  
+              <div
+                @fadeIn
+                class="d-flex justify-content-between align-items-center"
+              >
+                <a href="/register" class="text-muted link-info"
+                  >s'inscrire</a
+                >
+              </div>
+  
+              <div class="text-center text-lg-start mt-4 pt-2" @fadeIn>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  style="padding-left: 2rem; padding-right: 2rem"
+                  [disabled]="!registerForm.valid"
+                  (click)="
+                    onLoginButtonClicked(emailInput.value, passwordInput.value)
+                  "
+                >
+                  <strong>Se connecter</strong>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary"
+        @fadeIn
+      >
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0">
+          Copyright © 2022. All rights reserved.
+        </div>
+        <!-- Copyright -->
+      </div>
+    </section>
+  </div>
+  

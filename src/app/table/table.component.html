@@ -1,0 +1,27 @@
+<br>
+<br>
+<br>
+
+<table class="table">
+    <thead>
+      <tr >
+        <th scope="col">#</th>
+        <th scope="col">password</th>
+        <th scope="col"></th>
+        <th scope="col">name</th>
+        <th scope="col">port</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let access of accesslist; let i = index; let j=index">
+        <th scope="row">{{access._id}}</th>
+        <td  >
+            
+            {{value}}
+        </td>
+        <input type="checkbox"  (click)="viewpass(access)"> 
+        <td>{{access.username}}</td>
+        <td>{{access.portA}}</td>
+      </tr>
+    </tbody>
+  </table>

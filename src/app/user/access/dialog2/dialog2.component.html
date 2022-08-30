@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>{{sent}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="accessForm" >
+      <mat-form-field [hidden]="actionBtn==='Modifier'" appearance="outline">
+        <mat-label type="text">Clé publique</mat-label>
+        <input   formControlName="publickey" matInput placeholder="Saisir le clé publique">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label type="text">Nom Utilisateur</mat-label>
+        <input   formControlName="username" matInput placeholder="Saisir Nom...">
+      </mat-form-field>
+
+      <section>
+        <mat-checkbox color="primary" formControlName="subscribe">Accés par mot de passe</mat-checkbox>
+      </section>
+
+        
+
+          
+        
+          <mat-form-field appearance="outline">
+            <mat-label type="password" >Mot de passe</mat-label>
+            <input  formControlName="passwordA"   matInput placeholder="Sisir un mot d passe...">
+          </mat-form-field>
+
+          
+
+          <section>
+            <mat-checkbox color="primary" formControlName="url">Accés par URL</mat-checkbox>
+          </section>
+
+          <mat-form-field appearance="outline">
+            <mat-label type="email">Hostname</mat-label>
+            <input   formControlName="hostA" matInput placeholder="Saisir Host...">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label type="email">Port</mat-label>
+            <input   formControlName="portA" matInput placeholder="Saisir Port...">
+          </mat-form-field>
+        </form>
+      
+    
+    </div>
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button class="btn btn-secondary" mat-dialog-close>Annuler</button>
+        <button [disabled]="!accessForm.valid && actionBtn==='Ajouter'" mat-raised-button style="margin-left: 8px;" type="submit" class="btn btn-success" (click)="AjouterAccess()">{{actionBtn}}</button>
+    
+    </div>

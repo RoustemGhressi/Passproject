@@ -1,0 +1,154 @@
+<!-- Navbar -->
+<div>
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light animate__animated animate__fadeInDownBig"
+  >
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2">
+        <img
+          src="https://www.pngall.com/wp-content/uploads/4/Cyber-Security-Logo-Transparent.png"
+          height="30"
+          loading="fast"
+          style="margin-top: -1px"
+        />
+      </a>
+
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse animate__animated animate__fadeInDown"
+        id="navbarButtonsExample"
+      >
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-primary">PasswordProject</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+
+        <div
+          class="d-flex align-items-center animate__animated animate__fadeInDown"
+        >
+         
+
+          <button mat-raised-button 
+          type="submit"
+          class="btn btn-dark me-2 btn-md"
+          (click)="openDialog2()"
+        >
+          <strong> + Ajouter Accés  </strong>
+        </button>
+        <button
+        type="submit"
+        (click)="onlogout()"
+        class="btn btn-danger me-2 btn-md"
+      >
+        <strong> Se deconnecter </strong>
+      </button>
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <br>
+  <br>
+  <form [formGroup]="privateForm">
+  <div class="container animate__animated animate__fadeInDown">
+    <div class="row">
+      <div class="col-4">
+  <mat-form-field appearance="outline">
+    <mat-label type="text">Clé privé</mat-label>
+    
+    <input #privatekeyInput pattern="[-----BEGIN RSA PRIVATE KEY-----(\n|\r|\r\n)([0-9a-zA-Z\+\/=]{64}(\n|\r|\r\n))*([0-9a-zA-Z\+\/=]{1,63}(\n|\r|\r\n))?-----END RSA PRIVATE KEY-----]"  formControlName="privatekey" matInput placeholder="Saisir clé privé">
+    
+  </mat-form-field>
+</div>
+  <div class=" col-4">
+
+    <button [disabled]="!privatekeyInput.value" style="margin-top: 10px;"  mat-raised-button color="primary" (click)="
+    getaccessdecr(privatekeyInput.value)
+  ">Decrypter</button>
+  </div>
+  
+
+
+</div>
+</div>
+</form>
+  
+  <br>
+
+  <div class="container animate__animated animate__fadeInDown"> 
+<div class="mat-elevation-z3">
+    <table mat-table [dataSource]="dataSource" matSort> 
+      
+        
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+        <td mat-cell *matCellDef="let row">{{row.username}}</td>
+      </ng-container>
+
+      
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="passwordA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mot de passe </th>
+        
+        <td  mat-cell class="truncate-cell" *matCellDef="let row;let i = index;" >
+          <div style="width: 350px;word-wrap: break-word;" [hidden]="!row.view">
+            {{value}}
+          </div>
+          <mat-checkbox   [hidden]="row.passwordA===''" style="margin-left: 10px;" color="primary" (click)="viewpass(row)">view</mat-checkbox>
+          
+        </td>
+        
+        
+      </ng-container>
+     
+
+      <ng-container matColumnDef="hostA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hostname </th>
+        <td mat-cell *matCellDef="let row">{{row.hostA}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="portA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Port </th>
+        <td mat-cell *matCellDef="let row">{{row.portA}}</td>
+      </ng-container>
+      
+
+      
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let row">
+            <button  mat-raised-button class="btn btn-primary btn-sm"(click)="editAccess(row)">Modifier</button>
+          <button style="margin-left: 8px;"  mat-raised-button class="btn btn-danger btn-sm" (click)="delAccess(row)">Supprimer</button>
+         
+         </td>
+      </ng-container>
+  
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+</div>

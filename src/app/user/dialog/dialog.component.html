@@ -1,0 +1,35 @@
+
+
+<h1 mat-dialog-title>{{sent}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="projectForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Titre du projet</mat-label>
+            <input   formControlName="projectName" matInput placeholder="Saisir votre titre...">
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline">
+            <mat-label>Entreprise</mat-label>
+            <input   formControlName="Company" matInput placeholder="Sisir votre entreprise...">
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline">
+            <mat-label>Catégorie</mat-label>
+            <mat-select  formControlName="Category" placeholder="Catégorie">
+                <mat-option value="Web">Web</mat-option>
+                <mat-option value="Data Science">Data Science</mat-option>
+                <mat-option value="Intelligence Artificiel">Intelligence Artificiel</mat-option>
+                <mat-option value="Big Data">Big Data</mat-option>
+                <mat-option value="Design">Design</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </form>
+      
+    
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button class="btn btn-secondary" mat-dialog-close>Annuler</button>
+    <button mat-raised-button style="margin-left: 8px;" type="submit" class="btn btn-success"  (click)="AjouterProject()">{{actionBtn}}</button>
+
+</div>
+

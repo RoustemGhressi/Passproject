@@ -1,0 +1,68 @@
+<section class="vh-100 bg-light">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div
+            class="card shadow-2-strong animate__animated animate__fadeInDown"
+            style="border-radius: 1rem"
+          >
+            <div class="card-body p-5 text-center">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-outline mb-4">
+                  <div [hidden]="this.qrconfirm === 'true'">
+                    <button
+                      class="btn btn-success btn-sm btn-block"
+                      (click)="generateQrcode()"
+                      type="submit"
+                    >
+                      afficher qrcode
+                    </button>
+                    <br />
+                    <br />
+                     <div class="animate__animated animate__fadeIn"> 
+                    <img [src]="data_url" />
+                     </div>
+                  </div>
+  
+                  <br />
+                  <br />
+  
+                  <input
+                    #tokenInput
+                    formControlName="token"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && registerForm.controls['token'].errors
+                    }"
+                    type="text"
+                    class="form-control form-control-sm text-center bg-muted"
+                    placeholder="Votre Code ici"
+                    required
+                    minlength="6"
+                    maxlength="6"
+                  />
+                </div>
+  
+                <button
+                  class="btn btn-primary btn-md btn-block"
+                  [disabled]="!registerForm.valid"
+                  (click)="onConfirmButtonClicked(tokenInput.value)"
+                  type="submit"
+                >
+                  Confirmer
+                </button>
+                <button
+                style="margin-left:15px ;"
+                  class="btn btn-danger btn-md btn-block"
+                  type="submit"
+                  (click)="onlogout()"
+                >
+                  Quitter
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
