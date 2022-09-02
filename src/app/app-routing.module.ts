@@ -8,6 +8,7 @@ import { AuthguardGuard } from './authentif/authguard.guard';
 import { AccessComponent } from './user/access/access.component';
 import { TableComponent } from './table/table.component';
 import { RegisterComponent } from './user/register/register.component';
+import { TwofactorGuard } from './twofactor/twofactor.guard';
 
 
 const routes: Routes = [
@@ -19,8 +20,8 @@ const routes: Routes = [
     component: TwofactorComponent,
     canActivate: [AuthguardGuard],
   },
-  { path: 'profil', component: UserComponent, canActivate: [AuthguardGuard] },
-  { path: 'access', component: AccessComponent, canActivate:[AuthguardGuard]},
+  { path: 'profil', component: UserComponent, canActivate: [AuthguardGuard,TwofactorGuard] },
+  { path: 'access', component: AccessComponent, canActivate:[AuthguardGuard,TwofactorGuard]},
   { path: 'table', component: TableComponent }
 ];
 

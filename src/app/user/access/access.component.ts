@@ -36,7 +36,7 @@ export class AccessComponent implements OnInit {
   idr!:string ;
   isChecked!:boolean;
   chek!:boolean;
-  
+  submitted!:boolean;
   
   value: string="* * * * * *";
   accesslist: Access[] = [];

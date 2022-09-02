@@ -69,6 +69,7 @@ export class TwofactorComponent implements OnInit {
         }
       );
     }
+    if (this.authService.istwologgedin()) this.router.navigateByUrl('/profil');
 
     //window.onblur = this.newTabaction;
   }

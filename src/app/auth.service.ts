@@ -59,6 +59,7 @@ export class AuthService {
         tap((res: HttpResponse<any>) => {
           if (res.body.verified === true) {
             console.log('connecté');
+            localStorage.setItem('token2',token);
           }
           this.verify = res.body.verified;
           console.log({ verify: this.verify });
@@ -100,6 +101,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('qrconfirm');
+    localStorage.removeItem('token2');
   }
 
   getUserPayload() {
@@ -110,6 +112,8 @@ export class AuthService {
     } else return null;
   }
 
+
+
   isLoggedIn() {
     var userPayload = this.getUserPayload();
     if (userPayload) return userPayload.exp > Date.now() / 1000;
@@ -117,8 +121,11 @@ export class AuthService {
   }
 
   istwologgedin() {
-    if (this.verify) return true;
-    else return false;
+    if(localStorage.getItem('token2')){
+      return true
+    }else{
+      return false
+    }
   }
 
   getAccessToken() {
